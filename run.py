@@ -19,12 +19,12 @@ cur.execute("INSERT INTO test(num, data)VALUES(%s, %s)", (3, 'ccc'))
 # cur.execute("INSERT INTO auto_test(flag)VALUES(%s)", '1')
 # cur.execute("SELECT * FROM auto_test;")
 # cur.execute("update auto_test set flag = 0 ;")
+conn.commit()
 rows = cur.fetchall()        # all rows in table
 print(rows)
 for i in rows:
     print(i),type(i)
     print i[0], i[1], i[2]
-conn.commit()
 cur.close()
 conn.close()
 
