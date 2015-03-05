@@ -8,7 +8,7 @@ password=os.getenv('DB_PWD', '123456')
 host=os.getenv('DB_HOST', '127.0.0.1')
 port=os.getenv('DB_PORT', '5432')
 conn = psycopg2.connect(database=database, user=user, password=password, host=host, port=port)
-print "connect success"
+print "connect %s:%s success" % (host, port)
 cur = conn.cursor()
 # try:
 #     cur.execute("CREATE TABLE test(id serial PRIMARY KEY, num integer,data varchar);")
