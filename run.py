@@ -10,11 +10,14 @@ port=os.getenv('DB_PORT', '5432')
 conn = psycopg2.connect(database=database, user=user, password=password, host=host, port=port)
 print "connect success"
 cur = conn.cursor()
-cur.execute("CREATE TABLE test(id serial PRIMARY KEY, num integer,data varchar);")
-# #   
-cur.execute("INSERT INTO test(num, data)VALUES(%s, %s)", (1, 'aaa'))
-cur.execute("INSERT INTO test(num, data)VALUES(%s, %s)", (2, 'bbb'))
-cur.execute("INSERT INTO test(num, data)VALUES(%s, %s)", (3, 'ccc'))
+try:
+    cur.execute("CREATE TABLE test(id serial PRIMARY KEY, num integer,data varchar);")
+    # #   
+    cur.execute("INSERT INTO test(num, data)VALUES(%s, %s)", (1, 'aaa'))
+    cur.execute("INSERT INTO test(num, data)VALUES(%s, %s)", (2, 'bbb'))
+    cur.execute("INSERT INTO test(num, data)VALUES(%s, %s)", (3, 'ccc'))
+except Exception, ex:
+    print ex
 # cur.execute("CREATE TABLE auto_test(flag integer);")
 # cur.execute("INSERT INTO auto_test(flag)VALUES(%s)", '1')
 cur.execute("SELECT * FROM test;")
